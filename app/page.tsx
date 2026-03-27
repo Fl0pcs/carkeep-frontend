@@ -33,7 +33,7 @@ import {
 } from "lucide-react";
 
 type Lang = "en" | "et" | "ru";
-type Theme = "light" | "dark";
+type Theme = "dark";
 type AuthMode = "login" | "signup";
 type PageKey = "dashboard" | "cars" | "services" | "reminders" | "reports" | "billing" | "settings";
 type ServiceStatus = "done" | "dueSoon" | "overdue";
@@ -505,7 +505,7 @@ function Modal({ open, onClose, title, children }: { open: boolean; onClose: () 
 
 export default function CarCareFrontend() {
   const [lang, setLang] = useState<Lang>("et");
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme] = useState<Theme>("dark");
   const [page, setPage] = useState<PageKey>("dashboard");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [cars, setCars] = useState<CarItem[]>([]);
@@ -952,7 +952,7 @@ export default function CarCareFrontend() {
   }
 
   return (
-    <div className={isDark ? "min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.15),_transparent_25%),linear-gradient(180deg,_#020617_0%,_#0f172a_55%,_#020617_100%)] text-white transition-colors duration-300" : "light-theme min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(125,211,252,0.10),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(196,181,253,0.10),_transparent_25%),linear-gradient(180deg,_#eef4fb_0%,_#e8f0f8_55%,_#eef4fb_100%)] text-slate-900 transition-colors duration-300"}>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.15),_transparent_25%),linear-gradient(180deg,_#020617_0%,_#0f172a_55%,_#020617_100%)] text-white transition-colors duration-300">
       <div className="mx-auto max-w-[1600px] px-4 py-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className={isDark ? "mb-4 overflow-hidden rounded-[28px] border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100 backdrop-blur-xl" : "mb-4 overflow-hidden rounded-[28px] border border-sky-200 bg-white/80 px-4 py-3 text-sm text-sky-900 shadow-sm backdrop-blur-xl"}>
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
@@ -1011,9 +1011,7 @@ export default function CarCareFrontend() {
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                <button onClick={() => setTheme(isDark ? "light" : "dark")} className={isDark ? "rounded-2xl border border-white/10 bg-white/5 px-4 py-3 font-medium text-white transition hover:bg-white/10" : "rounded-2xl border border-slate-200 bg-white px-4 py-3 font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"}>
-                  {isDark ? "Light mode" : "Dark mode"}
-                </button>
+                
                 <button onClick={handleLogout} className={isDark ? "rounded-2xl border border-white/10 bg-white/5 px-4 py-3 font-medium text-white transition hover:bg-white/10" : "rounded-2xl border border-slate-200 bg-white px-4 py-3 font-medium text-slate-900 shadow-sm transition hover:bg-slate-50"}>
                   {t.logout}
                 </button>
@@ -1445,56 +1443,7 @@ export default function CarCareFrontend() {
         ))}
       </div>
 
-      <style jsx global>{`
-        .light-theme {
-          color: #0f172a;
-        }
-        .light-theme .text-white,
-        .light-theme .text-cyan-100 {
-          color: #0f172a !important;
-        }
-        .light-theme .text-white\/80,
-        .light-theme .text-white\/75,
-        .light-theme .text-white\/70,
-        .light-theme .text-white\/65,
-        .light-theme .text-white\/60,
-        .light-theme .text-white\/55,
-        .light-theme .text-white\/50,
-        .light-theme .text-white\/45,
-        .light-theme .text-white\/40,
-        .light-theme .text-white\/35 {
-          color: rgba(15, 23, 42, 0.72) !important;
-        }
-        .light-theme .border-white\/10 {
-          border-color: rgba(148, 163, 184, 0.35) !important;
-        }
-        .light-theme .bg-white\/5 {
-          background: rgba(255, 255, 255, 0.78) !important;
-        }
-        .light-theme .bg-white\/10 {
-          background: rgba(255, 255, 255, 0.92) !important;
-        }
-        .light-theme .bg-black\/30,
-        .light-theme .bg-black\/35 {
-          background: rgba(255, 255, 255, 0.82) !important;
-        }
-        .light-theme input,
-        .light-theme textarea,
-        .light-theme select {
-          color: #0f172a !important;
-        }
-        .light-theme input::placeholder {
-          color: rgba(15, 23, 42, 0.45) !important;
-        }
-        .light-theme .hover\\:bg-white\\/10:hover,
-        .light-theme .hover\\:bg-white\\/8:hover,
-        .light-theme .hover\\:bg-white\\/5:hover {
-          background: rgba(226, 232, 240, 0.95) !important;
-        }
-        .light-theme .hover\\:text-white:hover {
-          color: #0f172a !important;
-        }
-      `}</style>
+      
     </div>
   );
 }
